@@ -1,6 +1,7 @@
 package ar.edu.unsam.algo3.controller
 
 import ar.edu.unsam.algo3.DTO.InvitadosDTO
+import ar.edu.unsam.algo3.Services.InvitadoService
 import ar.edu.unsam.algo3.domain.Invitado
 import ar.edu.unsam.algo3.domain.RepositorioInvitados
 import io.swagger.v3.oas.annotations.Operation
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @CrossOrigin("*")
-class InvitadoController(@Autowired val repoInvitados : RepositorioInvitados<Invitado>) {
+class InvitadoController(@Autowired val repoInvitados : RepositorioInvitados<Invitado> , @Autowired val invitadosService: InvitadoService ) {
 
 
     @GetMapping("/ordenado")
@@ -50,4 +51,13 @@ class InvitadoController(@Autowired val repoInvitados : RepositorioInvitados<Inv
         repoInvitados.delete(invitado)
     }
 
+    @PutMapping("/{id}/confirmar")
+    fun confirmarInvitado(@PathVariable id: Int) {
+        invitadosService.confirmarInvitado(id)
+    }
+
+    @PutMapping("/{id}/cancelar")
+    fun cancelarConfirmacionInvitado(@PathVariable id: Int) {
+        invitadosService.cancelarConfirmacion(id)
+    }
 }

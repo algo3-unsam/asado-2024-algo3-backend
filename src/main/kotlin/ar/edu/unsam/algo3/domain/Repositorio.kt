@@ -94,6 +94,10 @@ class Repositorio<T : Entidad> {
         return invitados.sumOf { it.calcularMonto() }
     }
 
+
+
+
+
 }
 
 

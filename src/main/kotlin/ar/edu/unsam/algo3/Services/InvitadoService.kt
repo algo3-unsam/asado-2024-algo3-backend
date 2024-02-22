@@ -13,6 +13,12 @@ import org.springframework.stereotype.Service
             invitado.confirmado = true
             repoInvitados.update(invitado)
         }
+
+        fun cancelarConfirmacion(id: Int) {
+            val invitado = repoInvitados.getById(id)
+            invitado.confirmado = false
+            repoInvitados.update(invitado)
+        }
     }
 
 
