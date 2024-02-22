@@ -12,7 +12,7 @@ plugins {
 
 extra["springCloudVersion"] = "2022.0.4"
 
-group = "ar.edu.unsam.algo3"
+group = "ar.edu.unsam"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 java.targetCompatibility = JavaVersion.VERSION_17
@@ -25,25 +25,20 @@ dependencies {
     val kotestVersion = "5.4.2"
 
     // básicos de cualquier proyecto Spring Boot
-
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-hateoas")
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.boot:spring-boot-starter-web-services")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2") //
-    implementation("org.springdoc:springdoc-openapi-ui:1.6.14") //
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2")
+    implementation("org.springdoc:springdoc-openapi-starter-common:2.2.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
     implementation("org.springframework.boot:spring-boot-devtools")
 
-
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-    implementation("org.uqbar-project:geodds-xtend:1.0.3")
-    implementation ("com.google.code.gson:gson:2.10.1")
-
 
     // testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
