@@ -43,7 +43,7 @@ class InvitadoController(@Autowired val repoInvitados : RepositorioInvitados<Inv
     }
 
 
-    @DeleteMapping("/{idInvitado}")
+    @DeleteMapping("/borrar/{idInvitado}")
     @Operation(summary = "Elimina un Invitado por su id")
     fun deleteInvitado(
         @PathVariable idInvitado: Int) {
@@ -51,12 +51,12 @@ class InvitadoController(@Autowired val repoInvitados : RepositorioInvitados<Inv
         repoInvitados.delete(invitado)
     }
 
-    @PutMapping("/{id}/confirmar")
+    @PutMapping("/confirmar/{id}")
     fun confirmarInvitado(@PathVariable id: Int) {
         invitadosService.confirmarInvitado(id)
     }
 
-    @PutMapping("/{id}/cancelar")
+    @PutMapping("/cancelar{id}")
     fun cancelarConfirmacionInvitado(@PathVariable id: Int) {
         invitadosService.cancelarConfirmacion(id)
     }

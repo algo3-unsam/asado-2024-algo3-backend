@@ -3,6 +3,7 @@ package ar.edu.unsam.algo3.DTO
 import ar.edu.unsam.algo3.domain.Invitado
 
 class InvitadosDTO (
+    val id : Int,
     val nombre : String,
     val apellido : String,
     val comeEnsalada : Boolean,
@@ -21,6 +22,7 @@ class InvitadosDTO (
     }
 }
 fun Invitado.toDTO() = InvitadosDTO(
+    id = this.id,
     nombre = this.nombre,
     apellido = this.apellido,
     comeEnsalada = this.comeEnsalada,
