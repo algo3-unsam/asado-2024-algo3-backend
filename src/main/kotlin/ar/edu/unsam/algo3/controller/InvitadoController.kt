@@ -16,7 +16,7 @@ class InvitadoController(@Autowired val repoInvitados : RepositorioInvitados<Inv
 
 
     @GetMapping("/ordenado")
-    @Operation(summary = "devuelve un invitado  ordenado por nombre")
+    @Operation(summary = "devuelve un invitado  filtrado por nombre")
     fun ordenarInvitados(
         @RequestParam("nombreABuscar") nombreABuscar : String
         ): List<InvitadosDTO> {
@@ -24,7 +24,7 @@ class InvitadoController(@Autowired val repoInvitados : RepositorioInvitados<Inv
     }
 
     @GetMapping("/confirmado-ordenado")
-    @Operation(summary = "devuelve un invitado confirmado  ordenado por nombre")
+    @Operation(summary = "devuelve un invitado confirmado  filtrado por nombre")
     fun ordenarInvitadosConfirmados(
         @RequestParam("nombreABuscar") nombreABuscar : String
     ): List<InvitadosDTO> {

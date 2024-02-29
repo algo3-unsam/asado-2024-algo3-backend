@@ -9,7 +9,5 @@ class ElementoYaExisteException(msg: String) : RuntimeException(msg)
 @ResponseStatus(HttpStatus.NOT_FOUND)
 class ElementoInexistenteException(msg: String) : RuntimeException(msg)
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-class EmptyListException(msg: String) : RuntimeException(msg)
 
 
