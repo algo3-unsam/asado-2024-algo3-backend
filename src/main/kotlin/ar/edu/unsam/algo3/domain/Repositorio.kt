@@ -57,14 +57,17 @@ class Repositorio<T : Entidad> {
 }
 @Component
     class RepositorioInvitados<T: Invitado> : Repositorio<T>() {
-    lateinit var InvitadosFiltrados : List<InvitadosDTO>
+     lateinit var InvitadosFiltrados: List<InvitadosDTO>
+     lateinit var ConfirmadosFiltrados: List<InvitadosDTO>
 
-        fun search(value: String): List<InvitadosDTO> {
+
+    fun search(value: String): List<InvitadosDTO> {
         return InvitadosFiltrados.filter { it.nombre.contains(value, true) }
     }
+
     fun convertiraDTO(): List<InvitadosDTO> = elementos.map { it.toDTO() }
 
-    fun mostrarInvitadosPorNombre(nombreABuscar : String) : List<InvitadosDTO>{
+    fun mostrarInvitadosPorNombre(nombreABuscar: String): List<InvitadosDTO> {
         InvitadosFiltrados = convertiraDTO()
         if (nombreABuscar.isNotEmpty()) {
             InvitadosFiltrados = search(nombreABuscar)
@@ -74,11 +77,8 @@ class Repositorio<T : Entidad> {
 
 
     fun obtenerInvitadosConfirmados(): List<InvitadosDTO> {
-        InvitadosFiltrados = convertiraDTO()
-        if (!this::InvitadosFiltrados.isInitialized || InvitadosFiltrados.isEmpty()) {
-            return emptyList()
-        }
-        return InvitadosFiltrados.filter { it.confirmado }
+        ConfirmadosFiltrados = convertiraDTO()
+        return ConfirmadosFiltrados.filter { it.confirmado }
     }
 
     fun mostrarInvitadosConfirmadosPorNombre(nombreABuscar: String): List<InvitadosDTO> {
@@ -90,19 +90,13 @@ class Repositorio<T : Entidad> {
         }
         return invitadosFiltradosPorNombre
     }
-    fun calcularMontoTotal(invitados: List<InvitadosDTO>): Double {
-        return invitados.sumOf { it.calcularMonto() }
+
+    fun calcularMontoTotalARecaudar(): Double {
+        val invitadosConfirmados = obtenerInvitadosConfirmados()
+        return invitadosConfirmados.sumOf { it.calcularMonto }
     }
 
 
 
 
-
 }
-
-
-
-
-
-
-

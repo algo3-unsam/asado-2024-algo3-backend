@@ -9,17 +9,12 @@ class InvitadosDTO (
     val comeEnsalada : Boolean,
     var gramosDeCarne : Double,
     var ingredientesDeEnsalada: MutableList<String>,
-    var confirmado: Boolean
+    var confirmado: Boolean,
+    var calcularMonto: Double
 
 ) {
 
-    fun calcularMonto():Double{
-        var montoTotal= gramosDeCarne * 100
-        if(comeEnsalada) {
-            montoTotal += ingredientesDeEnsalada.size * 200
-        }
-        return montoTotal
-    }
+
 }
 fun Invitado.toDTO() = InvitadosDTO(
     id = this.id,
@@ -28,7 +23,8 @@ fun Invitado.toDTO() = InvitadosDTO(
     comeEnsalada = this.comeEnsalada,
     gramosDeCarne = this.gramosDeCarne,
     ingredientesDeEnsalada = this.ingredientesDeEnsalada,
-    confirmado = this.confirmado
+    confirmado = this.confirmado,
+    calcularMonto = this.calcularMontoAConsumir()
 )
 
 

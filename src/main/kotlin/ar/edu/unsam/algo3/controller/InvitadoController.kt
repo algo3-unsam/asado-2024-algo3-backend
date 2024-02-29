@@ -38,10 +38,8 @@ class InvitadoController(@Autowired val repoInvitados : RepositorioInvitados<Inv
 
     @GetMapping("/monto")
     fun obtenerMontoTotalConfirmados(): Double {
-        val invitadosConfirmados = repoInvitados.obtenerInvitadosConfirmados()
-        return repoInvitados.calcularMontoTotal(invitadosConfirmados)
+        return repoInvitados.calcularMontoTotalARecaudar()
     }
-
 
     @DeleteMapping("/borrar/{idInvitado}")
     @Operation(summary = "Elimina un Invitado por su id")
@@ -49,6 +47,7 @@ class InvitadoController(@Autowired val repoInvitados : RepositorioInvitados<Inv
         @PathVariable idInvitado: Int) {
         val invitado = repoInvitados.getById(idInvitado)
         repoInvitados.delete(invitado)
+
     }
 
     @PutMapping("/confirmar/{id}")
@@ -56,8 +55,13 @@ class InvitadoController(@Autowired val repoInvitados : RepositorioInvitados<Inv
         invitadosService.confirmarInvitado(id)
     }
 
-    @PutMapping("/cancelar{id}")
+    @PutMapping("/cancelar/{id}")
     fun cancelarConfirmacionInvitado(@PathVariable id: Int) {
-        invitadosService.cancelarConfirmacion(id)
+            invitadosService.cancelarConfirmacion(id)
+    }
+    @PutMapping("/editar-invitado/{id}")
+    @Operation(summary = "Actualiza un invitado por su ID")
+    fun actualizarInvitado(@PathVariable id: Int, @RequestBody invitadosDTO: InvitadosDTO) {
+        invitadosService.actualizarInvitado(id, invitadosDTO)
     }
 }
